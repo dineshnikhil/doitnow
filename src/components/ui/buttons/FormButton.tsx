@@ -2,9 +2,10 @@ import { Button } from '@mui/material';
 
 type formButtonProps = {
 	msg: string;
+	onSigninHandler: (event: React.FormEvent) => void;
 };
 
-export default function FormButton({ msg }: formButtonProps) {
+export default function FormButton({ msg, onSigninHandler }: formButtonProps) {
 	return (
 		<Button
 			variant="contained"
@@ -14,6 +15,7 @@ export default function FormButton({ msg }: formButtonProps) {
 				fontWeight: 'bold',
 				margin: '2% 0',
 			}}
+			onClick={onSigninHandler}
 		>
 			{msg}
 		</Button>
