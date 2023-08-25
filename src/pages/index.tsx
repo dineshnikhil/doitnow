@@ -1,10 +1,9 @@
-import CustomButton from '@/components/ui/buttons/Button';
+import Wellcome from '@/components/Wellcome';
 
 export default function Home() {
 	return (
 		<>
-			<h3>wellcome</h3>
-			<CustomButton />
+			<Wellcome />
 		</>
 	);
 }
