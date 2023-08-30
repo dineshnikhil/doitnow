@@ -1,5 +1,6 @@
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const NavLink = ({ linkName }: { linkName: string }) => {
 	return (
@@ -15,6 +16,8 @@ const NavLink = ({ linkName }: { linkName: string }) => {
 };
 
 export default function Nav() {
+	const session = useSession();
+
 	return (
 		<AppBar
 			style={{
@@ -47,17 +50,38 @@ export default function Nav() {
 						width: '20%',
 					}}
 				>
-					<Link
-						href="/signin"
-						style={{
-							margin: '0 5%',
-						}}
-					>
-						<NavLink linkName="sign in" />
-					</Link>
-					<Link href="/signup">
-						<NavLink linkName="sign up" />
-					</Link>
+					{session.data ? (
+						<Link
+							href="/api/auth/signout"
+							style={{
+								margin: '0 5%',
+							}}
+							onClick={(e) => {
+								e.preventDefault();
+								signOut();
+							}}
+						>
+							<NavLink linkName="sign out" />
+						</Link>
+					) : (
+						<>
+							<Link
+								href="/signin"
+								style={{
+									margin: '0 5%',
+								}}
+								onClick={(e) => {
+									e.preventDefault();
+									signIn();
+								}}
+							>
+								<NavLink linkName="sign in" />
+							</Link>
+							<Link href="/signup">
+								<NavLink linkName="sign up" />
+							</Link>
+						</>
+					)}
 				</div>
 			</Toolbar>
 		</AppBar>
