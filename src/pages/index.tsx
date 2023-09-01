@@ -11,13 +11,15 @@ export default function Home({ todos }: { todos: [] }) {
 
 export async function getServerSideProps(context: any) {
 	const session = await getSession(context);
+	console.log(session);
+
 	const response = await fetch('http://localhost:3000/api/todo');
 	const data = await response.json();
 
 	return {
 		props: {
 			session,
-			todos: data,
+			todos: data.todos,
 		},
 	};
 }
