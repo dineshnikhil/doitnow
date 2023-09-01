@@ -9,6 +9,7 @@ type signupFormProps = {
 	username: React.RefObject<HTMLInputElement>;
 	password: React.RefObject<HTMLInputElement>;
 	onSignupHandler: (event: React.FormEvent) => void;
+	onSignupWithGithubHandler: (evernt: any) => void;
 };
 
 export default function SignUpForm({
@@ -16,6 +17,7 @@ export default function SignUpForm({
 	username,
 	password,
 	onSignupHandler,
+	onSignupWithGithubHandler,
 }: signupFormProps) {
 	return (
 		<Paper
@@ -49,6 +51,10 @@ export default function SignUpForm({
 				<FormButton
 					msg="Sign Up for Free 🤝"
 					onSigninHandler={onSignupHandler}
+				/>
+				<FormButton
+					msg="sign up from github"
+					onSigninHandler={onSignupWithGithubHandler}
 				/>
 			</form>
 		</Paper>

@@ -10,9 +10,7 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	const { method, body } = req;
-	// const session = await getServerSession(req, res, AuthOptions);
 	const session = await getSession({ req });
-	console.log('i am session from api route', session);
 
 	if (method === 'GET') {
 		const todos = await Todo.find();

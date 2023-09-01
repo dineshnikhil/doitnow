@@ -1,6 +1,7 @@
 import SignUpForm from '@/components/SignUpForm';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 
 export default function SignIn() {
 	const router = useRouter();
@@ -31,12 +32,17 @@ export default function SignIn() {
 		}
 	}
 
+	async function signupWithGithubHandler() {
+		signIn('github');
+	}
+
 	return (
 		<SignUpForm
 			email={email}
 			username={username}
 			password={password}
 			onSignupHandler={signupHandler}
+			onSignupWithGithubHandler={signupWithGithubHandler}
 		/>
 	);
 }
