@@ -16,6 +16,13 @@ export default async function handler(
 	}
 
 	if (method === 'POST') {
+		const user = await User.findOne({ email: body.email });
+		if (user) {
+			return res.status(400).json({
+				error: 'user already exists with this mail id.',
+			});
+		}
+
 		const newUser = await User.create(body);
 		const saveduser = await newUser.save();
 		return res.status(201).json(saveduser);

@@ -33,7 +33,7 @@ export default function SignIn() {
 	}
 
 	async function signupWithGithubHandler() {
-		signIn('github');
+		signIn('github', { callbackUrl: '/' });
 	}
 
 	return (
