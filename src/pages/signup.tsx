@@ -12,24 +12,12 @@ export default function SignIn() {
 	async function signupHandler(event: React.FormEvent) {
 		event.preventDefault();
 
-		const response = await fetch('http://localhost:3000/api/user', {
-			method: 'POST',
-			body: JSON.stringify({
-				email: email.current?.value,
-				username: username.current?.value,
-				password: password.current?.value,
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-			},
+		signIn('credentials', {
+			email: email.current?.value,
+			username: username.current?.value,
+			password: password.current?.value,
+			callbackUrl: '/',
 		});
-
-		const data = await response.json();
-
-		if (data) {
-			console.log(data);
-			router.push('/');
-		}
 	}
 
 	async function signupWithGithubHandler() {
