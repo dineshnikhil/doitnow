@@ -5,13 +5,13 @@ import FormButton from './ui/buttons/FormButton';
 import React from 'react';
 
 type signinFormProps = {
-	username: React.RefObject<HTMLInputElement>;
+	email: React.RefObject<HTMLInputElement>;
 	password: React.RefObject<HTMLInputElement>;
 	onSigninHandler: (event: React.FormEvent) => void;
 };
 
 export default function SignInForm({
-	username,
+	email,
 	password,
 	onSigninHandler,
 }: signinFormProps) {
@@ -49,7 +49,7 @@ export default function SignInForm({
 				</Typography>
 			</div>
 			<form>
-				<FormInput label="username" type="text" inputRef={username} />
+				<FormInput label="email" type="text" inputRef={email} />
 				<FormInput label="password" type="password" inputRef={password} />
 				<FormButton msg="Sign In 🚀" onSigninHandler={onSigninHandler} />
 			</form>

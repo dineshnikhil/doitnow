@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import bcrypt from 'bcrypt';
 import dbConnection from '@/server/config';
 import User from '@/server/models/user';
 
@@ -47,7 +48,20 @@ export const authOptions = {
 			if (user) {
 				await dbConnection();
 				const foundUser = await User.findOne({ email: user.email });
-				if (!foundUser) {
+
+				if (foundUser) {
+					// if the user found we need to check for the correct password.
+					const validPassword = await bcrypt.compare(
+						user.password,
+						foundUser.password
+					);
+
+					if (validPassword) {
+						return foundUser;
+					} else {
+						return null;
+					}
+				} else {
 					if (user.password) {
 						const newUser = await User.create({
 							username: user.name,
