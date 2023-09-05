@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import TaskTableRow from './TaskTableRow';
 
-export default function TaskTable() {
+export default function TaskTable({ todos }: { todos: [] }) {
 	return (
 		<div
 			style={{
@@ -19,16 +19,20 @@ export default function TaskTable() {
 				<Table aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell>No</TableCell>
 							<TableCell>Task Title</TableCell>
 							<TableCell>Discription</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						<TaskTableRow />
-						<TaskTableRow />
-						<TaskTableRow />
-						<TaskTableRow />
+						{todos.map((todo: any) => {
+							return (
+								<TaskTableRow
+									key={todo._id}
+									title={todo.title}
+									description={todo.description}
+								/>
+							);
+						})}
 					</TableBody>
 				</Table>
 			</TableContainer>
