@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 import dbConnection from '@/server/config';
 import User from '@/server/models/user';
+import { NextApiResponse, NextApiRequest } from 'next';
 
 export const authOptions = {
 	// Configure one or more authentication providers

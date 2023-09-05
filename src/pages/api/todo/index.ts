@@ -18,9 +18,9 @@ export default async function handler(
 	}
 
 	if (method === 'POST') {
-		if (!session) {
-			return res.status(401).json({ error: 'Unauthorized User.!' });
-		}
+		// if (!session) {
+		// 	return res.status(401).json({ error: 'Unauthorized User.!' });
+		// }
 
 		const newTodo = await Todo.create(body);
 		const savedTodo = await newTodo.save();

@@ -70,10 +70,6 @@ export default function Nav() {
 								style={{
 									margin: '0 5%',
 								}}
-								onClick={(e) => {
-									e.preventDefault();
-									signIn();
-								}}
 							>
 								<NavLink linkName="sign in" />
 							</Link>
