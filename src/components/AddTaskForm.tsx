@@ -39,7 +39,13 @@ export default function AddTaskForm() {
 				padding: '5%',
 			}}
 		>
-			<h2>hello..!</h2>
+			<h2
+				style={{
+					textAlign: 'center',
+				}}
+			>
+				Add your task
+			</h2>
 			<form>
 				<FormInput label="title" type="text" inputRef={title} />
 				<FormInput label="description" type="text" inputRef={description} />

@@ -14,7 +14,7 @@ export default async function handler(
 	const { method, body } = req;
 
 	// check if the user exits
-	const user = await User.findOne({ username: body.username });
+	const user = await User.findOne({ email: body.email });
 	if (!user) {
 		return res.status(400).json({ error: 'user not found.' });
 	}
@@ -35,18 +35,13 @@ export default async function handler(
 		expiresIn: '1d',
 	});
 
-	// const response = NextResponse.json({
-	// 	message: 'Login successful',
-	// 	success: true,
-	// });
-
-	// response.cookies.set('token', token, {
-	// 	httpOnly: true,
-	// });
-
 	res.setHeader('Set-Cookie', `token=${token}; HttpOnly`);
 
 	return res.status(200).json({
+		data: {
+			username: user.username,
+			isAdmin: user.isAdmin,
+		},
 		message: 'Login successful',
 		success: true,
 	});
